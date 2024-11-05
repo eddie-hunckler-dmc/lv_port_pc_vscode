@@ -26,7 +26,9 @@
 		"cmake.configureOnOpen": true,
 		"files.associations": {
 			"glob.h": "c",
-			"lvgl.h": "c"
+			"lvgl.h": "c",
+			"lv_examples.h": "c",
+			"lv_demos.h": "c"
 		},
 	},
 	// tasks.json section
@@ -73,37 +75,30 @@
 		"version": "0.2.0",
 		"configurations": [
 			{
-				"name": "Debug LVGL demo with gdb",
+				"name": "msys64 - (gdb) Launch",
 				"type": "cppdbg",
 				"request": "launch",
-		        "program": "${workspaceFolder}/bin/main",
+				"program": "${workspaceFolder}/build/main.exe",
 				"args": [],
-				"cwd": "${workspaceFolder}",
-				"preLaunchTask": "Build",
 				"stopAtEntry": false,
-				"linux": {
-					"MIMode": "gdb",
-					"miDebuggerPath": "/usr/bin/gdb"
-				  },
-				  "osx": {
-					"MIMode": "lldb"
-				  },
-				  "windows": {
-					"MIMode": "gdb",
-					"miDebuggerPath": "C:\\MinGw\\bin\\gdb.exe"
-				  }
-			},
-			{
-				"name": "Debug LVGL demo with LLVM",
-				"type": "cppdbg",
-				"request": "launch",
-		        "program": "${workspaceFolder}/bin/main",
-				"args": [],
-				"cwd": "${workspaceFolder}",
-				"preLaunchTask": "Build",
-				"stopAtEntry": false,
-				"MIMode": "lldb"
-			},
+				"cwd": "${fileDirname}",
+				"environment": [],
+				"externalConsole": false,
+				"MIMode": "gdb",
+				"miDebuggerPath": "C:\\msys64\\mingw64\\bin\\gdb.exe",
+				"setupCommands": [
+					{
+						"description": "Enable pretty-printing for gdb",
+						"text": "-enable-pretty-printing",
+						"ignoreFailures": true
+					},
+					{
+						"description": "Set Disassembly Flavor to Intel",
+						"text": "-gdb-set disassembly-flavor intel",
+						"ignoreFailures": true
+					}
+				]
+			}
 		],
 	},
 }

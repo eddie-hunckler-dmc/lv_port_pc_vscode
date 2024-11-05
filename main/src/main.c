@@ -15,12 +15,11 @@
 #include "lvgl/lvgl.h"
 #include "lvgl/examples/lv_examples.h"
 #include "lvgl/demos/lv_demos.h"
-#include "glob.h"
 
 /*********************
  *      DEFINES
  *********************/
-
+#define main SDL_main
 /**********************
  *      TYPEDEFS
  **********************/
@@ -75,8 +74,8 @@ int main(int argc, char **argv)
   /*Initialize the HAL (display, input devices, tick) for LVGL*/
   hal_init(320, 480);
 
-  #if LV_USE_OS == LV_OS_NONE
- 
+  #if ( LV_USE_OS == LV_OS_NONE ) || ( LV_USE_OS == LV_OS_WINDOWS )
+
   lv_demo_widgets();
 
   while(1) {
